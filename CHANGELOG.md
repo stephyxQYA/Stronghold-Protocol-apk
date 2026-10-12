@@ -1,5 +1,12 @@
 # 更新记录
 
+## 安卓客户端（APK）— 2026-10-12
+
+- 新增安卓原生壳 `android/`（改编自 [Paper-Yuan/Stronghold-Protocol](https://github.com/Paper-Yuan/Stronghold-Protocol)，作者 @Paper-Yuan）：APK 内嵌 Node.js 运行时（`libnode.so` 18.20.4）与网页客户端，手机装好即可**离线开服**，同一局域网的朋友用浏览器打开它显示的地址即可加入（本地 / 远程服务器切换在 APK 的「服务器」设置里）。
+- 构建：`node scripts/build-android.mjs`（调试包）或 `node scripts/build-android.mjs --release`（发布包）；产出 `android/app/build/outputs/apk/debug/app-debug.apk`。改动 `public/` / `server/` / `shared/` / `data/` 后需重新构建才会进到 APK。
+- 应用图标换成像素风罗德岛城堡（城堡 + 菱形徽记，深蓝 / 琥珀配色），便于与其他版本区分；由 `tools/make-icon.mjs` 生成（自适应前景 / 单色层、传统与圆形图标、通知小图标）。图标为同人像素绘制，罗德岛相关元素 © 鹰角网络 / Yostar，见 [NOTICE.md](NOTICE.md)。
+- 许可与第三方声明见 [NOTICE.md](NOTICE.md)、[THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)。
+
 ## 0.2.4 — 2026-10-11
 
 ### 规则（按官方）
