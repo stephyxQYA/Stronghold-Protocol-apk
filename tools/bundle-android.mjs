@@ -14,7 +14,11 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ANDROID_ASSETS_DIR = path.join(ROOT, 'android', 'app', 'src', 'main', 'assets');
 const ZIP_TARGET = path.join(ANDROID_ASSETS_DIR, 'app_bundle.zip');
-const STAGING_DIR = path.join(ROOT, '.cache', 'android-bundle-staging');
+// Staging needs a few GB and a writable directory: `.cache/` is the default, SP_ANDROID_STAGING overrides it (a
+// sandboxed or read-only .cache/ would otherwise fail the build before Gradle ever runs).
+const STAGING_DIR = process.env.SP_ANDROID_STAGING
+  ? path.resolve(process.env.SP_ANDROID_STAGING)
+  : path.join(ROOT, '.cache', 'android-bundle-staging');
 
 console.log('[bundle-android] Preparing Android app_bundle...');
 
